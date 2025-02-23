@@ -22,8 +22,8 @@ update:
 test:
 	go test ./...
 
-module.tar.gz: meta.json $(MODULE_BINARY) start.sh
-	tar czf $@ meta.json $(MODULE_BINARY) start.sh
+module.tar.gz: meta.json $(MODULE_BINARY) 
+	tar czf $@ meta.json $(MODULE_BINARY) 
 	git checkout meta.json
 
 ifeq ($(VIAM_TARGET_OS), windows)
