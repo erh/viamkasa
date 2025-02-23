@@ -23,6 +23,10 @@ func init() {
 	)
 }
 
+func NewDiscovery(logger logging.Logger) discovery.Service {
+	return &viamkasaKasaDiscover{logger: logger}
+}
+
 type viamkasaKasaDiscover struct {
 	resource.AlwaysRebuild
 	resource.TriviallyCloseable
@@ -32,7 +36,7 @@ type viamkasaKasaDiscover struct {
 	logger logging.Logger
 }
 
-func newViamkasaKasaDiscover(ctx context.Context, deps resource.Dependencies, rawConf resource.Config, logger logging.Logger) (discovery.Service, error) {
+func newViamkasaKasaDiscover(ctx context.Context, _ resource.Dependencies, rawConf resource.Config, logger logging.Logger) (discovery.Service, error) {
 	s := &viamkasaKasaDiscover{
 		name:   rawConf.ResourceName(),
 		logger: logger,
@@ -57,6 +61,7 @@ func (s *viamkasaKasaDiscover) DiscoverResources(ctx context.Context, extra map[
 
 	configs := []resource.Config{}
 	for host, info := range all {
+		s.logger.Debugf("discovery result host: %v\n\t%#v", host, info)
 		configs = append(configs, resource.Config{
 			Name:  info.Alias,
 			API:   toggleswitch.API,
