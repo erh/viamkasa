@@ -1,0 +1,26 @@
+{
+  "$schema": "https://dl.viam.dev/module.schema.json",
+  "module_id": "erh:viamkasa",
+  "visibility": "public",
+  "url": "https://github.com/erh/viamkasa",
+  "description": "Modular generic service: kasa-switch",
+  "models": [
+    {
+        "api": "rdk:component:switch",
+        "model": "erh:viamkasa:kasa-switch",
+        "short_description": "Kasa Swtich Component",
+        "markdown_link": "README.md#kasa-switch"
+    }
+  ],
+  "entrypoint": "bin/viamkasamodule",
+  "first_run": "",
+  "build": {
+    "build": "make module.tar.gz",
+    "setup": "make setup",
+    "path": "module.tar.gz",
+    "arch": [
+      "linux/amd64",
+      "linux/arm64"
+    ]
+  }
+}
