@@ -5,12 +5,16 @@
   "url": "https://github.com/erh/viamkasa",
   "description": "Modular generic service: kasa-switch",
   "models": [
-    {
-        "api": "rdk:component:switch",
-        "model": "erh:viamkasa:kasa-switch",
-        "short_description": "Kasa Swtich Component",
-        "markdown_link": "README.md#kasa-switch"
-    }
+      {
+          "api": "rdk:component:switch",
+          "model": "erh:viamkasa:kasa-switch",
+          "short_description": "Kasa Swtich Component",
+          "markdown_link": "README.md#kasa-switch"
+      },
+      {
+          "api": "rdk:service:discovery",
+          "model": "erh:viamkasa:kasa-discovery"
+      }
   ],
   "entrypoint": "bin/viamkasamodule",
   "first_run": "",

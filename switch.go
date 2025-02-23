@@ -12,11 +12,11 @@ import (
 )
 
 var (
-	KasaSwitch = resource.NewModel("erh", "viamkasa", "kasa-switch")
+	KasaSwitch = family.WithModel("kasa-switch")
 )
 
 func init() {
-	resource.RegisterService(toggleswitch.API, KasaSwitch,
+	resource.RegisterComponent(toggleswitch.API, KasaSwitch,
 		resource.Registration[toggleswitch.Switch, *Config]{
 			Constructor: newViamkasaKasaSwitch,
 		},
