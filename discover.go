@@ -58,7 +58,7 @@ func (s *viamkasaKasaDiscover) DiscoverResources(ctx context.Context, extra map[
 	configs := []resource.Config{}
 	for host, info := range all {
 		configs = append(configs, resource.Config{
-			Name:  info.DevName,
+			Name:  info.Alias,
 			API:   toggleswitch.API,
 			Model: KasaSwitch,
 			Attributes: utils.AttributeMap{
