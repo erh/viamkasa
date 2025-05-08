@@ -23,11 +23,11 @@ func init() {
 	)
 }
 
-func NewDiscovery(logger logging.Logger) discovery.Service {
-	return &viamkasaKasaDiscover{logger: logger}
+func NewDiscovery(logger logging.Logger) *ViamkasaKasaDiscover {
+	return &ViamkasaKasaDiscover{logger: logger}
 }
 
-type viamkasaKasaDiscover struct {
+type ViamkasaKasaDiscover struct {
 	resource.AlwaysRebuild
 	resource.TriviallyCloseable
 
@@ -37,7 +37,7 @@ type viamkasaKasaDiscover struct {
 }
 
 func newViamkasaKasaDiscover(ctx context.Context, _ resource.Dependencies, rawConf resource.Config, logger logging.Logger) (discovery.Service, error) {
-	s := &viamkasaKasaDiscover{
+	s := &ViamkasaKasaDiscover{
 		name:   rawConf.ResourceName(),
 		logger: logger,
 	}
@@ -45,16 +45,20 @@ func newViamkasaKasaDiscover(ctx context.Context, _ resource.Dependencies, rawCo
 	return s, nil
 }
 
-func (s *viamkasaKasaDiscover) Name() resource.Name {
+func (s *ViamkasaKasaDiscover) Name() resource.Name {
 	return s.name
 }
 
-func (s *viamkasaKasaDiscover) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
+func (s *ViamkasaKasaDiscover) DoCommand(ctx context.Context, cmd map[string]interface{}) (map[string]interface{}, error) {
 	return nil, nil
 }
 
-func (s *viamkasaKasaDiscover) DiscoverResources(ctx context.Context, extra map[string]any) ([]resource.Config, error) {
-	all, err := kasa.BroadcastDiscovery(10, 1)
+func (s *ViamkasaKasaDiscover) DiscoverResources(ctx context.Context, extra map[string]any) ([]resource.Config, error) {
+	return s.DiscoverKasa(ctx, 10, 1)
+}
+
+func (s *ViamkasaKasaDiscover) DiscoverKasa(ctx context.Context, timeout, probes int) ([]resource.Config, error) {
+	all, err := kasa.BroadcastDiscovery(timeout, probes)
 	if err != nil {
 		return nil, fmt.Errorf("cannot do kasa discovery: %w", err)
 	}
@@ -62,14 +66,28 @@ func (s *viamkasaKasaDiscover) DiscoverResources(ctx context.Context, extra map[
 	configs := []resource.Config{}
 	for host, info := range all {
 		s.logger.Debugf("discovery result host: %v\n\t%#v", host, info)
-		configs = append(configs, resource.Config{
-			Name:  info.Alias,
-			API:   toggleswitch.API,
-			Model: KasaSwitch,
+
+		c := resource.Config{
+			Name: info.Alias,
 			Attributes: utils.AttributeMap{
 				"Host": host,
 			},
-		})
+		}
+
+		switch info.MIC {
+		case "IOT.SMARTBULB":
+			c.API = toggleswitch.API
+			c.Model = KasaLight
+		case "IOT.SMARTPLUGSWITCH":
+			c.API = toggleswitch.API
+			c.Model = KasaSwitch
+		default:
+			s.logger.Warnf("unknown MIC [%s] using basic switch", info.MIC)
+			c.API = toggleswitch.API
+			c.Model = KasaSwitch
+		}
+
+		configs = append(configs, c)
 	}
 	return configs, nil
 }

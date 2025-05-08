@@ -144,3 +144,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
 )
+
+replace github.com/cloudkucooland/go-kasa => github.com/erh/go-kasa v0.0.0-20250508171443-079a2fef60c5

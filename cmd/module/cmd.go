@@ -12,6 +12,7 @@ import (
 func main() {
 	module.ModularMain(
 		resource.APIModel{toggleswitch.API, viamkasa.KasaSwitch},
+		resource.APIModel{toggleswitch.API, viamkasa.KasaLight},
 		resource.APIModel{discovery.API, viamkasa.KasaDiscovery},
 	)
 }
