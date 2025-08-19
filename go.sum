@@ -194,8 +194,8 @@ github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1m
 github.com/envoyproxy/go-control-plane v0.9.9-0.20201210154907-fd9021fe5dad/go.mod h1:cXg6YxExXjJnVBQHBLXeUAgxn2UodCpnH306RInaBQk=
 github.com/envoyproxy/go-control-plane v0.9.10-0.20210907150352-cf90f659a021/go.mod h1:AFq3mo9L8Lqqiid3OhADV3RfLJnjiw63cSpi+fDTRC0=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
-github.com/erh/go-kasa v0.0.0-20250508171443-079a2fef60c5 h1:M5pkOczFxZZm4aRBd+KiOm4TCfqxkNPpeSHdUOTV0r4=
-github.com/erh/go-kasa v0.0.0-20250508171443-079a2fef60c5/go.mod h1:3sm1KHuZBUNEvkqPfo8C48iSjENJfHmKk43C6KrNdPw=
+github.com/erh/go-kasa v0.0.0-20250819194046-45324eb6e7cf h1:Ty2idt5Uh79zuWUW0ZECjO/i4fq3Uje72HK2ppqFQ7o=
+github.com/erh/go-kasa v0.0.0-20250819194046-45324eb6e7cf/go.mod h1:wihiJVpATX1783YEartKDmkqodC4+ZAF6GZ1p1jS0bs=
 github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 h1:Yzb9+7DPaBjB8zlTR87/ElzFsnQfuHnVUVqpZZIcV5Y=
 github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5/go.mod h1:a2zkGnVExMxdzMo3M0Hi/3sEU+cWnZpSni0O6/Yb/P0=
 github.com/esimonov/ifshort v1.0.1/go.mod h1:yZqNJUrNn20K8Q9n2CrjTKYyVEmX209Hgu+M1LBpeZE=

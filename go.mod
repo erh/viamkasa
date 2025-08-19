@@ -1,6 +1,6 @@
 module github.com/erh/viamkasa
 
-go 1.23
+go 1.25
 
 require (
 	github.com/cloudkucooland/go-kasa v0.0.0-20250214050305-f370885e5154
@@ -145,4 +145,4 @@ require (
 	nhooyr.io/websocket v1.8.7 // indirect
 )
 
-replace github.com/cloudkucooland/go-kasa => github.com/erh/go-kasa v0.0.0-20250508171443-079a2fef60c5
+replace github.com/cloudkucooland/go-kasa => github.com/erh/go-kasa v0.0.0-20250819194046-45324eb6e7cf
